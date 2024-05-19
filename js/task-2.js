@@ -26,20 +26,18 @@ const images = [
 ];
 
 // start
-const gallery = document.querySelector('ul.gallery');
+const list = document.querySelector('.gallery');
 
 
-// create document
-const fragment = document.createDocumentFragment();
+const listMarkup = images
+  .map(image =>
+    `<li>
+    <img class = "picture" src="${image.url}" alt="${image.alt}" width="360" heght="300" />
+  </li>`
+  )
+  .join("");
 
-// function
-images.forEach(image => {
-  const li = document.createElement('li');
-  const img = document.createElement('img');
-  img.src = image.url;
-  img.alt = image.alt;
-  li.appendChild(img);
-  fragment.appendChild(li);
-});
-
-gallery.appendChild(fragment);
+list.insertAdjacentHTML("beforeend", listMarkup);
+list.style.display = "flex";
+list.style.gap = "24px";
+list.flexWrap = "wrap";
