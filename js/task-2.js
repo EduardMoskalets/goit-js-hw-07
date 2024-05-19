@@ -29,13 +29,29 @@ const images = [
 const list = document.querySelector('.gallery');
 
 
-const listMarkup = images
-  .map(image =>
-    `<li>
-    <img class = "picture" src="${image.url}" alt="${image.alt}" width="360" heght="300" />
-  </li>`
-  )
-  .join("");
+const gallery = document.querySelector('.gallery');
+
+// create element
+const createGallery = () => {
+  const galleryElements = images.slice(0, 3).map((image) => {
+    const li = document.createElement('li');
+    const img = document.createElement('img');
+    
+    img.src = image.url;
+    img.alt = image.alt;
+    
+    li.appendChild(img);
+    
+    return li;
+  });
+  
+  // forEach
+  galleryElements.forEach((element) => {
+    gallery.appendChild(element);
+  });
+};
+
+createGallery();
 
 list.insertAdjacentHTML("beforeend", listMarkup);
 list.style.display = "flex";
