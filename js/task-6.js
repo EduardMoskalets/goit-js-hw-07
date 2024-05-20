@@ -48,12 +48,13 @@ function createBoxes(amount) {
   boxes.innerHTML = "";
   boxsize = 30;
   for (let i = 1; i <= amount; i += 1) {
-    newDiv = `<div style = "width: ${boxsize}px; height: ${boxsize}px; background: ${getRandomHexColor()}"></div>`;
-    boxes.insertAdjacentHTML("beforeend", newDiv);
+    newDiv += `<div style = "width: ${boxsize}px; height: ${boxsize}px; background: ${getRandomHexColor()}"></div>`;
+    // boxes.insertAdjacentHTML("beforeend", newDiv);
     boxsize += 10;
   }
 }
 
+boxes.insertAdjacentHTML("beforeend", newDiv);
 // destroy Boxes
 
 destroyBtn.addEventListener("click", (event) => {
