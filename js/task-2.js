@@ -60,6 +60,6 @@ const listMarkup = images.map(image =>
 // createGallery();
 
 list.insertAdjacentHTML("beforeend", listMarkup);
-gallery.style.display = "flex";
-gallery.style.gap = "24px";
-gallery.flexWrap = "wrap";
+list.style.display = "flex";
+list.style.gap = "24px";
+list.flexWrap = "wrap";
