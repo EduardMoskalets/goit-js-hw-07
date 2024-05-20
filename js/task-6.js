@@ -20,41 +20,43 @@
 // Для очищення колекції після натискання на кнопку Destroy створи функцію destroyBoxes(),
 // яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи.
 
+const inputAmount = document.querySelector('#controls > input');
+const createBtn = document.querySelector('button[data-create]');
+const destroyBtn = document.querySelector('button[data-destroy]');
+const boxes = document.querySelector('#boxes');
+const color = getRandomHexColor();
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
 
-const input = document.querySelector('input');
-const createBtn = document.querySelector('[data-create]');
-const destroyBtn = document.querySelector('[data-destroy]');
-const boxes = document.getElementById('boxes');
-
-createBtn.addEventListener('click', createBoxes);
-destroyBtn.addEventListener('click', destroyBoxes);
-
 // Create Boxes
 
-function createBoxes() {
-  const amount = input.value;
-  if (amount < 1 || amount > 100) {
-    alert('Please enter a number between 1 and 100');
-    return;
+createBtn.addEventListener('click', (event) => {
+  if (inputAmount.value > 0 && inputAmount.value <= 100) {
+    createBoxes(inputAmount.value)
+  } else {
+    alert("Введіть число від 1 до 100")
   }
+})
 
-  for (let i = 0; i < amount; i++) {
-    const box = document.createElement('div');
-    box.style.width = `${30 + i * 10}px`;
-    box.style.height =  `${30 + i * 10}px`;
-    box.style.backgroundColor = getRandomHexColor();
-    boxes.appendChild(box);
+let boxsize;
+let newDiv; 
+function createBoxes(amount) {
+  boxes.innerHTML = "";
+  boxsize = 30;
+  for (let i = 1; i <= amount; i += 1) {
+    newDiv = `<div style = "width: ${boxsize}px; height: ${boxsize}px; background: ${getRandomHexColor()}"></div>`;
+    boxes.insertAdjacentHTML("beforeend", newDiv);
+    boxsize += 10;
   }
-  input.value = '';
-};
+}
 
 // destroy Boxes
 
-function destroyBoxes() {
-  boxes.innerHTML = '';
-}
+destroyBtn.addEventListener("click", (event) => {
+  inputAmount.value = "";
+  boxes.innerHTML = "";
+})
