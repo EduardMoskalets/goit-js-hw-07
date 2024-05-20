@@ -26,34 +26,40 @@ const images = [
 ];
 
 // start
-const list = document.querySelector('.gallery');
+const list = document.querySelector(".gallery");
 
 
-const gallery = document.querySelector('.gallery');
+// const gallery = document.querySelector('.gallery');
 
 // create element
-const createGallery = () => {
-  const galleryElements = images.slice(0, 3).map((image) => {
-    const li = document.createElement('li');
-    const img = document.createElement('img');
+// const createGallery = () => {
+//   const galleryElements = images.slice(0, 3).map((image) => {
+//     const li = document.createElement('li');
+//     const img = document.createElement('img');
     
-    img.src = image.url;
-    img.alt = image.alt;
+//     img.src = image.url;
+//     img.alt = image.alt;
     
-    li.appendChild(img);
+//     li.appendChild(img);
     
-    return li;
-  });
+//     return li;
+//   });
   
   // forEach
-  galleryElements.forEach((element) => {
-    gallery.appendChild(element);
-  });
-};
+//   galleryElements.forEach((element) => {
+//     gallery.appendChild(element);
+//   });
+// };
 
-createGallery();
+const listMarkup = images.map(image =>
+  `<li>
+  <img class = "picture" src="${image.url}" alt="${image.url}" width="360" height="300"/>
+  </li>`
+).join("");
+
+// createGallery();
 
 list.insertAdjacentHTML("beforeend", listMarkup);
-list.style.display = "flex";
-list.style.gap = "24px";
-list.flexWrap = "wrap";
+gallery.style.display = "flex";
+gallery.style.gap = "24px";
+gallery.flexWrap = "wrap";
